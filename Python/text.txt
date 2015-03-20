@@ -1,0 +1,6 @@
+# Version: y2015m03d20
+
+Here is some trial text.
+
+The point is to version when this file was last edited.
+
