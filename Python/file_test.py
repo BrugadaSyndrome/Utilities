@@ -1,4 +1,4 @@
-import os, time
+import os, time, sys, getopt
 
 def make_version(mtime):
     # t = ['Text Day', 'Month', 'Num day', 'time', 'year']
@@ -25,13 +25,28 @@ def update_version(mtime, old_version, lines):
         lines.append('# Version: {0}\n'.format(new_version))
 
     '''
-    print '---FOUND VERSION'
     print '---old: ', old_version
     print '---new: ', new_version
     '''
 
-def main():
-    file_name = 'version_me.txt'
+def main(argv):
+    # Parse command line
+    try:
+      opts, args = getopt.getopt(argv,"hf:",["help=", "file="])
+    except getopt.GetoptError:
+        print "Please type 'version.py -h' for usage."
+        sys.exit(1)
+
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print 'version.py -f <file> [-h <help>]'
+            sys.exit()
+        elif opt in ("-f", "--file"):
+            if (os.path.exists(arg)):
+                file_name = arg
+            else:
+                print "File ({0}) does not exist!".format(arg)
+                sys.exit(2)
     
     mtime = os.path.getmtime(file_name)
     lines = []
@@ -59,7 +74,8 @@ def main():
     if (updated == False):
         lines = ['# Version: {0}\n'.format(make_version(mtime))] + lines
 
-    w = open('text.txt', 'w')
+    w = open(file_name, 'w')
     w.writelines(lines)
 
-main()
+if __name__ == '__main__':
+    main(sys.argv[1:])
