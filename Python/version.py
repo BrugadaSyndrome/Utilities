@@ -43,15 +43,15 @@ def update_file(file_name):
         # Check for version tag until it is found
         if (updated == False):
             check_line = line.strip().split()
-            if (len(check_line)):
+            if (len(check_line) >= 2):
                 # Found version tag, update it
-                if (check_line[1] == 'Version:'):
+                if (check_line[0] == '#' and check_line[1] == 'Version:'):
                     update_version(mtime, check_line[2], lines)
                     updated = True
                 else:
                     lines.append(line)
             else:
-                lines.append('\n')
+                lines.append(line)
         else:
             lines.append(line)
 
