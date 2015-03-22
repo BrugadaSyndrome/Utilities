@@ -1,3 +1,4 @@
+# Version: y2015m03d21
 import os
 import time
 import sys
@@ -85,7 +86,7 @@ def main(argv):
     for opt, arg in opts:
         # Help
         if opt in ("-h", "--help"):
-            print 'version.py -f <file> -d directory [-h <help>]'
+            print 'version.py -f <file> -d <directory> [-h <help>]'
             sys.exit()
 
         # Update specific file  

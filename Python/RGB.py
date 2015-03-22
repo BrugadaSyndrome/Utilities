@@ -1,3 +1,4 @@
+# Version: y2015m03d21
 class RGB:
     def __init__(self, r=0, g=0, b=0):
         self.r = r
