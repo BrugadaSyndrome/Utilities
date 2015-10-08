@@ -1,6 +1,0 @@
-# Version: ymd
-
-Here is some trial text.
-
-The point is to version when this file was last edited.
-
